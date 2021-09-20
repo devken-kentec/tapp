@@ -35,18 +35,6 @@ public class ListasService {
 		return ar.buscaAvancada(data).stream().map(AgendaDTO::new).collect(Collectors.toList());
 	}
 	
-	public void updateAgenda(AgendaDTO agendaDTO) {
-		Optional<Agenda> agenda = ar.findById(agendaDTO.getId());
-		
-		if(agenda.isPresent()) {
-			agenda.get().setData(agendaDTO.getData());
-			agenda.get().setHora(agendaDTO.getHora());
-			agenda.get().setAssunto(agendaDTO.getAssunto());
-			agenda.get().setDescricao(agendaDTO.getDescricao());
-			ar.save(agenda.get());
-		}
-	}
-	
 	public void removeAgenda(Long id) {
 		Optional<Agenda> agenda = ar.findById(id);
 		

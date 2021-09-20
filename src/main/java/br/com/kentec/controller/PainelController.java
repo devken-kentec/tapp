@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -28,6 +29,12 @@ public class PainelController {
 	public void create(@RequestBody AgendaDTO agenda) {
 		System.out.println(agenda);
 		ps.createAgenda(agenda);
+	}
+	
+	@PutMapping("/alterarAgenda")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateAgenda(@RequestBody AgendaDTO agendaDTO) {
+			ps.updateAgenda(agendaDTO);
 	}
 	
 	@PostMapping("/tarefa")
