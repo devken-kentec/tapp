@@ -21,6 +21,6 @@ public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 	public List<Agenda> listarAgenda(@Param("id") Long id);
 	
 	@Query("SELECT a FROM Agenda a WHERE a.data = (:data) ")
-	public List<Agenda> buscaAvancada(@Param("data") LocalDate data);
+	public List<Agenda> buscaAvancadaAgenda(@Param("data") LocalDate data);
 
 }

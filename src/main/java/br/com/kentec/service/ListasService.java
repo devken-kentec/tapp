@@ -33,7 +33,7 @@ public class ListasService {
 	}
 	
 	public List<AgendaDTO> buscaAvancada(LocalDate data){
-		return ar.buscaAvancada(data).stream().map(AgendaDTO::new).collect(Collectors.toList());
+		return ar.buscaAvancadaAgenda(data).stream().map(AgendaDTO::new).collect(Collectors.toList());
 	}
 	
 	public void removeAgenda(Long id) {
@@ -61,6 +61,6 @@ public class ListasService {
 	}
 	
 	public List<TarefasDTO> buscaAvancadaTarefa(LocalDate data){
-		return tr.buscaAvancada(data).stream().map(TarefasDTO::new).collect(Collectors.toList());
+		return tr.buscaAvancadaTarefa(data).stream().map(TarefasDTO::new).collect(Collectors.toList());
 	}
 }

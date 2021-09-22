@@ -21,5 +21,5 @@ public interface TarefasRepository extends JpaRepository<Tarefas, Long> {
 	public List<Tarefas> listarTarefa(@Param("id") Long id);
 	
 	@Query("SELECT t FROM Tarefas t WHERE t.inicio = (:data) ")
-	public List<Tarefas> buscaAvancada(@Param("data") LocalDate data);
+	public List<Tarefas> buscaAvancadaTarefa(@Param("data") LocalDate data);
 }
