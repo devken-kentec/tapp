@@ -49,13 +49,11 @@ public class ListasController {
 		return ResponseEntity.ok(ls.buscaAvancada(localDate));
 	}
 	
-	
 	@DeleteMapping("/excluirAgenda/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removeAgenda(@PathVariable("id") Long id) {
 		ls.removeAgenda(id);
 	}
-	
 	
 	@GetMapping("/listarTarefa/{idUsuario}")
 	public ResponseEntity<List<TarefasDTO>> listarTarefasId(@PathVariable("idUsuario") Long idUsuario){
@@ -83,5 +81,4 @@ public class ListasController {
 		  
 		return ResponseEntity.ok(ls.buscaAvancadaTarefa(localDate));
 	}
-	
 }
