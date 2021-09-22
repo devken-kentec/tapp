@@ -39,7 +39,7 @@ public class ListasController {
 		return ResponseEntity.ok(ls.listarAgendaId(idUsuario));
 	} 
 	
-	@GetMapping("/buscar")
+	@GetMapping("/buscarAgenda")
 	public ResponseEntity<List<AgendaDTO>> buscaAvancada(
 				@RequestParam(value ="data", required = false, defaultValue="") String data){
 
@@ -67,5 +67,21 @@ public class ListasController {
 		Optional<TarefasDTO> tarefa = ls.listarTarefa(id);
 		return tarefa.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	} 
+	
+	@DeleteMapping("/excluirTarefa/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void removeTarefa(@PathVariable("id") Long id) {
+		ls.removeTarefa(id);
+	}
+	
+	@GetMapping("/buscarTarefa")
+	public ResponseEntity<List<TarefasDTO>> buscaAvancadaTarefa(
+				@RequestParam(value ="data", required = false, defaultValue="") String data){
+
+		  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		  LocalDate localDate = LocalDate.parse(data, formatter);
+		  
+		return ResponseEntity.ok(ls.buscaAvancadaTarefa(localDate));
+	}
 	
 }

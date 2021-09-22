@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.kentec.DTO.AgendaDTO;
 import br.com.kentec.DTO.TarefasDTO;
 import br.com.kentec.domain.Agenda;
+import br.com.kentec.domain.Tarefas;
 import br.com.kentec.repository.AgendaRepository;
 import br.com.kentec.repository.TarefasRepository;
 
@@ -50,4 +51,16 @@ public class ListasService {
 	public Optional<TarefasDTO> listarTarefa(Long id){
 		return tr.findById(id).map(TarefasDTO::new);
 	} 
+	
+	public void removeTarefa(Long id) {
+		Optional<Tarefas> tarefa = tr.findById(id);
+		
+		if(tarefa.isPresent()) {
+			tr.deleteById(id);
+		}
+	}
+	
+	public List<TarefasDTO> buscaAvancadaTarefa(LocalDate data){
+		return tr.buscaAvancada(data).stream().map(TarefasDTO::new).collect(Collectors.toList());
+	}
 }

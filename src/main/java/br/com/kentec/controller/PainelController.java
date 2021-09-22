@@ -37,6 +37,12 @@ public class PainelController {
 			ps.updateAgenda(agendaDTO);
 	}
 	
+	@PutMapping("/alterarTarefa")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateTarefa(@RequestBody TarefasDTO tarefaDTO) {
+			ps.updateTarefa(tarefaDTO);
+	}
+	
 	@PostMapping("/tarefa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@RequestBody TarefasDTO tarefas) {

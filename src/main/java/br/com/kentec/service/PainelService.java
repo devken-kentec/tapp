@@ -66,6 +66,21 @@ public class PainelService {
 		}
 	}
 	
+	public void updateTarefa(TarefasDTO tarefaDTO) {
+		Optional<Tarefas> tarefa = tr.findById(tarefaDTO.getId());
+		
+		if(tarefa.isPresent()) {
+			tarefa.get().setInicio(tarefaDTO.getInicio());
+			tarefa.get().setTermino(tarefaDTO.getEntrega());
+			tarefa.get().setHora(tarefaDTO.getHora());
+			tarefa.get().setPrioridade(tarefaDTO.getPrioridade());
+			tarefa.get().setDescricao(tarefaDTO.getDescricao());
+			tarefa.get().setObservacao(tarefaDTO.getObservacao());
+			tarefa.get().setStatusTarefa(tarefaDTO.getStatusTarefa());
+			tr.save(tarefa.get());
+		}
+	}
+	
 	public void createTarefa(TarefasDTO tarefasDTO) {
 		
 		Optional<Usuarios> user = this.findById(tarefasDTO.getUsuarioId());
