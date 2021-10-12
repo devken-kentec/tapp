@@ -66,21 +66,6 @@ public class PainelService {
 		}
 	}
 	
-	public void updateTarefa(TarefasDTO tarefaDTO) {
-		Optional<Tarefas> tarefa = tr.findById(tarefaDTO.getId());
-		
-		if(tarefa.isPresent()) {
-			tarefa.get().setInicio(tarefaDTO.getInicio());
-			tarefa.get().setTermino(tarefaDTO.getEntrega());
-			tarefa.get().setHora(tarefaDTO.getHora());
-			tarefa.get().setPrioridade(tarefaDTO.getPrioridade());
-			tarefa.get().setDescricao(tarefaDTO.getDescricao());
-			tarefa.get().setObservacao(tarefaDTO.getObservacao());
-			tarefa.get().setStatusTarefa(tarefaDTO.getStatusTarefa());
-			tr.save(tarefa.get());
-		}
-	}
-	
 	public void createTarefa(TarefasDTO tarefasDTO) {
 		
 		Optional<Usuarios> user = this.findById(tarefasDTO.getUsuarioId());
@@ -96,6 +81,21 @@ public class PainelService {
 		tarefa.setUsuario(user.get());
 		tr.save(tarefa);
 		
+	}
+	
+	public void updateTarefa(TarefasDTO tarefaDTO) {
+		Optional<Tarefas> tarefa = tr.findById(tarefaDTO.getId());
+		
+		if(tarefa.isPresent()) {
+			tarefa.get().setInicio(tarefaDTO.getInicio());
+			tarefa.get().setTermino(tarefaDTO.getEntrega());
+			tarefa.get().setHora(tarefaDTO.getHora());
+			tarefa.get().setPrioridade(tarefaDTO.getPrioridade());
+			tarefa.get().setDescricao(tarefaDTO.getDescricao());
+			tarefa.get().setObservacao(tarefaDTO.getObservacao());
+			tarefa.get().setStatusTarefa(tarefaDTO.getStatusTarefa());
+			tr.save(tarefa.get());
+		}
 	}
 	
 	public void createFinanceiro(FinanceiroDTO financeiroDTO) {
@@ -114,6 +114,25 @@ public class PainelService {
 		financeiro.setStatus(financeiroDTO.getStatus());
 		financeiro.setUsuario(user.get());
 		fr.save(financeiro);
+	}
+	
+	public void updateFinanceiro(FinanceiroDTO financeiroDTO) {
+		
+		Optional<Financeiro> finan = fr.findById(financeiroDTO.getId());
+		
+		if(finan.isPresent()) {
+			finan.get().setRecurso(financeiroDTO.getRecurso());
+			finan.get().setData(financeiroDTO.getData());
+			finan.get().setTipo(financeiroDTO.getTipo());
+			finan.get().setReferente(financeiroDTO.getReferente());
+			finan.get().setValor(financeiroDTO.getValor());
+			finan.get().setDocumento(financeiroDTO.getDocumento());
+			finan.get().setDescricao(financeiroDTO.getDescricao());
+			finan.get().setVencimento(financeiroDTO.getVencimento());
+			finan.get().setStatus(financeiroDTO.getStatus());
+			fr.save(finan.get());
+		}	
+		
 	}
 	
 	public void createAprender(AprenderDTO aprenderDTO) {

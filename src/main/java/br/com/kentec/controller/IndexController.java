@@ -12,5 +12,4 @@ public class IndexController {
 	public String get() {
 		return "Esta tudo aqui na palma de sua mão!";
 	}
-
 }

@@ -3,8 +3,11 @@ package br.com.kentec.DTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import br.com.kentec.domain.Financeiro;
+
 public class FinanceiroDTO {
 	
+	private Long id;
 	private String recurso;
 	private LocalDate data;
 	private String tipo;
@@ -20,6 +23,28 @@ public class FinanceiroDTO {
 		
 	}
 	
+	public FinanceiroDTO(Financeiro financeiro) {
+		this.id = financeiro.getId();
+		this.recurso = financeiro.getRecurso();
+		this.data = financeiro.getData();
+		this.tipo = financeiro.getTipo();
+		this.referente = financeiro.getReferente();
+		this.descricao = financeiro.getDescricao();
+		this.documento = financeiro.getDocumento();
+		this.valor = financeiro.getValor();
+		this.status = financeiro.getStatus();
+		this.vencimento = financeiro.getVencimento();
+		this.usuarioId = financeiro.getUsuario().getId();
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getRecurso() {
 		return recurso;
 	}
@@ -102,10 +127,9 @@ public class FinanceiroDTO {
 
 	@Override
 	public String toString() {
-		return "FinanceiroDTO [recurso=" + recurso + ", data=" + data + ", tipo=" + tipo + ", referente=" + referente
-				+ ", descricao=" + descricao + ", documento=" + documento + ", valor=" + valor + ", status=" + status
-				+ ", vencimento=" + vencimento + ", usuarioId=" + usuarioId + "]";
+		return "FinanceiroDTO [id=" + id + ", recurso=" + recurso + ", data=" + data + ", tipo=" + tipo + ", referente="
+				+ referente + ", descricao=" + descricao + ", documento=" + documento + ", valor=" + valor + ", status="
+				+ status + ", vencimento=" + vencimento + ", usuarioId=" + usuarioId + "]";
 	}
-	
 	
 }

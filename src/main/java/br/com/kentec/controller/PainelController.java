@@ -37,16 +37,16 @@ public class PainelController {
 			ps.updateAgenda(agendaDTO);
 	}
 	
-	@PutMapping("/alterarTarefa")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateTarefa(@RequestBody TarefasDTO tarefaDTO) {
-			ps.updateTarefa(tarefaDTO);
-	}
-	
 	@PostMapping("/tarefa")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@RequestBody TarefasDTO tarefas) {
 		ps.createTarefa(tarefas);
+	}
+	
+	@PutMapping("/alterarTarefa")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateTarefa(@RequestBody TarefasDTO tarefaDTO) {
+			ps.updateTarefa(tarefaDTO);
 	}
 	
 	@PostMapping("/financeiro")
@@ -59,5 +59,11 @@ public class PainelController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createAprender(@RequestBody AprenderDTO aprender) {
 		ps.createAprender(aprender);
+	}
+	
+	@PutMapping("/alterarFinanceiro")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateFinanceiro(@RequestBody FinanceiroDTO financeiroDTO) {
+			ps.updateFinanceiro(financeiroDTO);
 	}
 }

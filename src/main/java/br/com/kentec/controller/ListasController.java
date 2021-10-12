@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.kentec.DTO.AgendaDTO;
+import br.com.kentec.DTO.FinanceiroDTO;
 import br.com.kentec.DTO.TarefasDTO;
 import br.com.kentec.service.ListasService;
 
@@ -80,5 +81,36 @@ public class ListasController {
 		  LocalDate localDate = LocalDate.parse(data, formatter);
 		  
 		return ResponseEntity.ok(ls.buscaAvancadaTarefa(localDate));
+	}
+	
+	@GetMapping("/listarFinanceiro/{idUsuario}/{dataI}/{dataF}")
+	public ResponseEntity<List<FinanceiroDTO>> listarFinanceiro(
+														@PathVariable("idUsuario") Long idUsuario,
+														@PathVariable("dataI") String dataI,
+														@PathVariable("dataF") String dataF){
+
+		return ResponseEntity.ok(ls.listarFinanceiro(idUsuario, dataI, dataF));
+	}
+	
+	@GetMapping("/pesquisaAvancadaFinanceiro")
+	public ResponseEntity<List<FinanceiroDTO>> buscaAvancadaFinanceiro(
+			@RequestParam(value ="id", required = false, defaultValue="") Long id,
+			@RequestParam(value ="tipo", required = false, defaultValue="") String tipo,
+			@RequestParam(value ="recurso", required = false, defaultValue="") String recurso,
+			@RequestParam(value ="dataInicial", required = false, defaultValue="") String dataInicial,
+			@RequestParam(value ="dataFinal", required = false, defaultValue="") String dataFinal){
+		
+		return ResponseEntity.ok(ls.buscaAvancadaFinanceiro(id, tipo, recurso, dataInicial, dataFinal));
+	}
+	
+	@GetMapping("/listarFinanceiroId/{id}")
+	public ResponseEntity<Optional<FinanceiroDTO>> listarFinanceiroId(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(ls.listarFinanceiroId(id));
+	}
+	
+	@DeleteMapping("/excluirFinanceiro/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void removeFinanceiro(@PathVariable("id") Long id) {
+		ls.removeFinanceiro(id);
 	}
 }
