@@ -2,7 +2,9 @@ package br.com.kentec.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,12 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService us;
+	
+	@GetMapping("/count")
+	public ResponseEntity<Long> startServer(){
+		System.out.println(us.startServer());
+		return ResponseEntity.ok(us.startServer());
+	}
 	
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)

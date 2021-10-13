@@ -70,7 +70,6 @@ public class ListasService {
 		return tr.buscaAvancadaTarefa(data).stream().map(TarefasDTO::new).collect(Collectors.toList());
 	}
 	
-	
 	public Optional<FinanceiroDTO> listarFinanceiroId(Long id){
 		return fr.findById(id).map(FinanceiroDTO::new);
 	} 
@@ -79,8 +78,8 @@ public class ListasService {
 		return fr.listarFinanceiroId(id, dataI, dataF).stream().map(FinanceiroDTO::new).collect(Collectors.toList());
 	}
 	
-	public List<FinanceiroDTO> buscaAvancadaFinanceiro(Long id, String tipo, String recurso, String dataInicial, String dataFinal) {
-		return fr.buscaAvancadaFinanceiro(id, tipo, recurso, dataInicial, dataFinal).stream().map(FinanceiroDTO::new).collect(Collectors.toList());
+	public List<FinanceiroDTO> buscaAvancadaFinanceiro(Long id, String tipo, String recurso, LocalDate dataInicial, LocalDate dataFinal) {
+		return fr.buscaAvancadaFinanceiro(id, "%"+tipo+"%", "%"+recurso+"%", dataInicial, dataFinal).stream().map(FinanceiroDTO::new).collect(Collectors.toList());
 	}
 
 	public void removeFinanceiro(Long id) {
@@ -90,7 +89,5 @@ public class ListasService {
 			fr.deleteById(id);
 		}
 	}
-
-
 	
 }

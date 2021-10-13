@@ -1,5 +1,6 @@
 package br.com.kentec.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,27 +19,24 @@ public interface FinanceiroRepository extends JpaRepository<Financeiro, Long> {
 			+ "ON u.id = f.id_usuario "
 			+ "WHERE u.id = (:id) "
 			+ "AND f.data BETWEEN :dataI AND :dataF "
-			+ "ORDER BY f.data ASC LIMIT 10 ")
+			+ "ORDER BY f.vencimento    ")
 	public List<Financeiro> listarFinanceiroId(
 									@Param("id") Long id,
 									@Param("dataI") String dataI,
 									@Param("dataF") String dataF);
 	
-	
-	
-	@Query(nativeQuery = true, value="SELECT * FROM financeiro AS f "
-			+ "JOIN usuarios AS u "
-			+ "ON u.id = f.id_usuario "
+	@Query("SELECT f FROM Financeiro f "
+			+ "JOIN f.usuario u "
 			+ "WHERE u.id = (:id) "
 			+ "AND f.data BETWEEN :dataI AND :dataF "
-			+ "AND f.tipo = (:tipo) "
-			+ "AND f.recurso = (:recurso) "
-			+ "ORDER BY f.data ")
+			+ "AND UPPER(f.tipo) LIKE UPPER(:tipo) "
+			+ "AND UPPER(f.recurso) LIKE UPPER(:recurso) "
+			+ "ORDER BY f.vencimento ")
 	public List<Financeiro> buscaAvancadaFinanceiro(
 									@Param("id") Long id,
 									@Param("tipo") String tipo,
 									@Param("recurso") String recurso,
-									@Param("dataI") String dataI,
-									@Param("dataF") String dataF);
+									@Param("dataI") LocalDate dataI,
+									@Param("dataF") LocalDate dataF);
 
 }

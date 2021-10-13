@@ -100,7 +100,11 @@ public class ListasController {
 			@RequestParam(value ="dataInicial", required = false, defaultValue="") String dataInicial,
 			@RequestParam(value ="dataFinal", required = false, defaultValue="") String dataFinal){
 		
-		return ResponseEntity.ok(ls.buscaAvancadaFinanceiro(id, tipo, recurso, dataInicial, dataFinal));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDateI = LocalDate.parse(dataInicial, formatter);
+		LocalDate localDateF = LocalDate.parse(dataFinal, formatter);
+		  
+		return ResponseEntity.ok(ls.buscaAvancadaFinanceiro(id, tipo, recurso, localDateI, localDateF));
 	}
 	
 	@GetMapping("/listarFinanceiroId/{id}")

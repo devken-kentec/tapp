@@ -12,6 +12,10 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository ur;
 	
+	public Long startServer() {
+		return ur.count();
+	}
+	
 	public void create(Usuarios usuario) {
 		ur.save(usuario);
 	}
