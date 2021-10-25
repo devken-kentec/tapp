@@ -31,6 +31,9 @@ public class Usuarios implements Serializable {
 	@Column(name="email", nullable = true, length = 100)
 	private String email;
 	
+	@Column(name="role", nullable = false, length = 15)
+	private String role;
+	
 	@Column(name="senha", nullable = false, length = 10)
 	private String senha;
 	
@@ -69,6 +72,14 @@ public class Usuarios implements Serializable {
 		this.email = email;
 	}
 	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -80,6 +91,6 @@ public class Usuarios implements Serializable {
 	@Override
 	public String toString() {
 		return "Usuarios [id=" + id + ", nome=" + nome + ", sobreNome=" + sobreNome + ", dataDeNascimento="
-				+ dataDeNascimento + ", email=" + email + ", senha=" + senha + "]";
+				+ dataDeNascimento + ", email=" + email + ", role=" + role + ", senha=" + senha + "]";
 	}
 }
